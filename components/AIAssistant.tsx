@@ -57,13 +57,8 @@ export const AIAssistant: React.FC = () => {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-pink-500 p-3 border-4 border-black font-black uppercase italic flex items-center gap-3 neo-shadow text-xs animate-pulse-grow">
-                  <span className="flex items-center">
-                    Thinking
-                    <span className="animate-dot-pulse ml-1" style={{ animationDelay: '0s' }}>.</span>
-                    <span className="animate-dot-pulse mx-0.5" style={{ animationDelay: '0.2s' }}>.</span>
-                    <span className="animate-dot-pulse" style={{ animationDelay: '0.4s' }}>.</span>
-                  </span>
+                <div className="bg-pink-500 p-3 border-4 border-black font-black uppercase italic flex items-center gap-1 neo-shadow text-xs animate-thinking-organic">
+                  THINKING...
                 </div>
               </div>
             )}
