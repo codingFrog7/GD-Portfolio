@@ -9,18 +9,25 @@
     <style>
       :root {
         --dot-size: 30px;
-        --dot-color: rgba(0, 0, 0, 0.1);
+        --dot-color: rgba(0, 0, 0, 0.07);
+        --smooth-curve: cubic-bezier(0.23, 1, 0.32, 1);
       }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: 'Space Grotesk', sans-serif;
         color: #000000;
         background-color: #f8f8f8;
-        /* Dotted background pattern for the rest of the site */
         background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.5px);
         background-size: var(--dot-size) var(--dot-size);
         cursor: url('https://api.iconify.design/lucide:mouse-pointer-2.svg?color=%23000000'), auto;
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
       }
+
       h1, h2, h3, .pixel-font {
         font-family: 'Silkscreen', cursive;
         color: #000000;
@@ -28,24 +35,43 @@
       .script-font {
         font-family: 'Pacifico', cursive;
       }
+
+      /* Transitions & Motion */
+      .transition-smooth {
+        transition: all 0.5s var(--smooth-curve);
+      }
+
       .neo-shadow {
         box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        transition: transform 0.3s var(--smooth-curve), box-shadow 0.3s var(--smooth-curve);
       }
       .neo-shadow-hover:hover {
-        box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
-        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+        transform: translate(-3px, -3px);
       }
       .neo-shadow-active:active {
         box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 1);
-        transform: translate(2px, 2px);
+        transform: translate(3px, 3px);
       }
       
-      /* Glassmorphism utility */
       .neo-glass {
         background: rgba(255, 255, 255, 0.45);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 4px solid #000000;
+        transition: background 0.4s var(--smooth-curve);
+      }
+
+      /* Reveal on Scroll */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s var(--smooth-curve), transform 0.8s var(--smooth-curve);
+        will-change: transform, opacity;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       @keyframes marquee {
@@ -53,83 +79,73 @@
         100% { transform: translateX(-50%); }
       }
       .animate-marquee {
-        animation: marquee 20s linear infinite;
-      }
-      @keyframes float {
-        0% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-12px) rotate(3deg); }
-        100% { transform: translateY(0px) rotate(0deg); }
-      }
-      .animate-float {
-        animation: float 8s ease-in-out infinite;
-      }
-      
-      /* Refined Squash and Stretch Pulse */
-      @keyframes pulse-grow {
-        0%, 100% { transform: scale(1) rotate(0deg); }
-        25% { transform: scale(1.05) rotate(1deg); }
-        50% { transform: scale(0.98) rotate(-0.5deg); }
-        75% { transform: scale(1.02) rotate(0.5deg); }
-      }
-      .animate-pulse-grow {
-        animation: pulse-grow 4s ease-in-out infinite;
+        animation: marquee 30s linear infinite;
       }
 
-      /* Organic Thinking Animation */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-15px) rotate(2deg); }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      @keyframes pulse-grow {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+      }
+      .animate-pulse-grow {
+        animation: pulse-grow 4s var(--smooth-curve) infinite;
+      }
+
       @keyframes thinking-organic {
         0%, 100% {
-          transform: scale(1) rotate(0deg) translateX(0);
-          background-color: #ec4899; /* pink-500 */
-        }
-        25% {
-          transform: scale(1.04) rotate(1deg) translateX(2px);
-          background-color: #f472b6; /* pink-400 */
+          transform: scale(1) rotate(0deg);
+          background-color: #ec4899;
         }
         50% {
-          transform: scale(0.97) rotate(-0.5deg) translateX(-1px);
-          background-color: #db2777; /* pink-600 */
-        }
-        75% {
-          transform: scale(1.02) rotate(0.5deg) translateX(1px);
-          background-color: #f472b6; /* pink-400 */
+          transform: scale(0.95) rotate(-1deg);
+          background-color: #db2777;
         }
       }
       .animate-thinking-organic {
-        animation: thinking-organic 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation: thinking-organic 2.5s var(--smooth-curve) infinite;
       }
 
-      /* Dots pulsing animation - refined for fluid feel */
-      @keyframes dot-pulse {
-        0%, 100% { transform: scale(1) translateY(0); opacity: 0.4; }
-        50% { transform: scale(1.5) translateY(-2px); opacity: 1; }
-      }
-      .animate-dot-pulse {
-        display: inline-block;
-        animation: dot-pulse 1.4s ease-in-out infinite;
-      }
-      
-      /* Painterly Canvas Texture */
       .canvas-texture {
         background-image: url("https://www.transparenttextures.com/patterns/canvas-orange.png");
       }
       
-      /* Pixelated Cloud Styling */
       .cloud-shape {
         position: absolute;
         image-rendering: pixelated;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M3 0h3v1h1v1h1v2H7v1H1V4H0V2h1V1h1V0h1z' fill='white'/%3E%3C/svg%3E");
         background-size: 100% 100%;
         background-repeat: no-repeat;
-        background-position: center;
-        filter: drop-shadow(6px 6px 0px rgba(0,0,0,0.15));
+        filter: drop-shadow(6px 6px 0px rgba(0,0,0,0.1));
       }
 
-      /* Image Sticker effect from the picture */
       .sticker-frame {
         border: 10px solid white;
-        border-radius: 15px;
-        box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+        border-radius: 4px;
+        box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
         overflow: hidden;
+        transition: transform 0.5s var(--smooth-curve);
+      }
+      .sticker-frame:hover {
+        transform: scale(1.02) rotate(0deg);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #000;
+        border: 3px solid #f1f1f1;
       }
     </style>
   <script type="importmap">

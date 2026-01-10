@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { getGeminiResponse } from '../geminiService';
 import { ChatMessage } from '../types';
@@ -14,7 +13,10 @@ export const AIAssistant: React.FC = () => {
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
     }
   }, [messages, isLoading]);
 
@@ -32,22 +34,27 @@ export const AIAssistant: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[100] flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       {isOpen && (
-        <div className="w-80 md:w-96 h-[420px] bg-white border-4 border-black neo-shadow mb-3 flex flex-col overflow-hidden">
-          <div className="bg-yellow-400 border-b-4 border-black p-3 flex justify-between items-center">
+        <div className="w-[calc(100vw-3rem)] md:w-96 h-[480px] bg-white border-4 border-black neo-shadow mb-4 flex flex-col overflow-hidden animate-in slide-in-from-bottom-8 fade-in duration-500 ease-out">
+          <div className="bg-yellow-400 border-b-4 border-black p-4 flex justify-between items-center">
             <h3 className="font-black uppercase italic text-lg flex items-center gap-2">
               <span className="w-3 h-3 bg-red-500 rounded-full border-2 border-black animate-pulse"></span>
               Deepu-Bot v1.0
             </h3>
-            <button onClick={() => setIsOpen(false)} className="bg-black text-white w-8 h-8 font-black flex items-center justify-center hover:bg-red-500 transition-colors text-sm border-2 border-black">X</button>
+            <button 
+              onClick={() => setIsOpen(false)} 
+              className="bg-black text-white w-8 h-8 font-black flex items-center justify-center hover:bg-red-500 transition-smooth text-sm border-2 border-black"
+            >
+              X
+            </button>
           </div>
           
-          <div ref={scrollRef} className="flex-grow overflow-y-auto p-4 space-y-4 bg-gray-50 bg-[radial-gradient(#00000010_1px,transparent_1px)] [background-size:16px_16px]">
+          <div ref={scrollRef} className="flex-grow overflow-y-auto p-5 space-y-5 bg-gray-50 bg-[radial-gradient(#00000010_1.5px,transparent_1.5px)] [background-size:24px_24px]">
             {messages.map((m, idx) => (
-              <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
                 <div className={`
-                  max-w-[90%] p-3 border-4 border-black font-bold text-sm
+                  max-w-[90%] p-4 border-4 border-black font-bold text-sm
                   ${m.role === 'user' ? 'bg-blue-400 text-black' : 'bg-white text-black'}
                   neo-shadow
                 `}>
@@ -56,27 +63,27 @@ export const AIAssistant: React.FC = () => {
               </div>
             ))}
             {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-pink-500 p-3 border-4 border-black font-black uppercase italic flex items-center gap-1 neo-shadow text-xs animate-thinking-organic">
+              <div className="flex justify-start animate-in fade-in duration-300">
+                <div className="bg-pink-500 px-4 py-2 border-4 border-black font-black uppercase italic flex items-center gap-1 neo-shadow text-xs animate-thinking-organic">
                   THINKING...
                 </div>
               </div>
             )}
           </div>
 
-          <div className="p-4 border-t-4 border-black flex gap-2 bg-white">
+          <div className="p-4 border-t-4 border-black flex gap-3 bg-white">
             <input 
               type="text" 
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
               placeholder="Type a message..."
-              className="flex-grow p-2 border-4 border-black font-bold focus:outline-none focus:bg-yellow-50 text-sm placeholder:text-black/40"
+              className="flex-grow p-3 border-4 border-black font-bold focus:outline-none focus:bg-yellow-50 text-sm placeholder:text-black/30 transition-smooth"
             />
             <button 
               onClick={handleSend}
               disabled={isLoading}
-              className="bg-black text-white px-4 font-black uppercase italic hover:bg-gray-800 disabled:bg-gray-400 transition-colors text-xs border-2 border-black neo-shadow-active"
+              className="bg-black text-white px-6 font-black uppercase italic hover:bg-pink-500 hover:text-white disabled:bg-gray-400 transition-smooth text-xs border-4 border-black neo-shadow-active"
             >
               SEND
             </button>
@@ -86,9 +93,9 @@ export const AIAssistant: React.FC = () => {
 
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-pink-500 w-16 h-16 rounded-full border-4 border-black neo-shadow neo-shadow-hover neo-shadow-active flex items-center justify-center text-3xl group transition-all"
+        className="bg-pink-500 w-16 h-16 rounded-full border-4 border-black neo-shadow neo-shadow-hover neo-shadow-active flex items-center justify-center text-3xl group transition-smooth"
       >
-        <span className="group-hover:scale-110 transition-transform">👾</span>
+        <span className="group-hover:scale-125 transition-smooth">{isOpen ? '📉' : '👾'}</span>
       </button>
     </div>
   );
