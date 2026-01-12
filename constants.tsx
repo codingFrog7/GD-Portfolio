@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Experience, Skill, Project } from './types';
 
 export const COLORS = {

@@ -18,18 +18,18 @@ export const Resume: React.FC = () => {
           <div className="bg-pink-500 p-8 border-4 border-black neo-shadow">
             <h2 className="text-2xl font-black uppercase mb-6 italic border-b-4 border-black inline-block">Contact</h2>
             <div className="space-y-4 font-bold text-lg text-black">
-              <a href={`tel:${RESUME_DATA.contact.phone}`} className="flex items-center gap-3 hover:underline">
-                <span className="bg-black text-white p-2 border-2 border-black text-sm">PH</span>
-                {RESUME_DATA.contact.phone}
-              </a>
               <a href={`mailto:${RESUME_DATA.contact.email}`} className="flex items-center gap-3 hover:underline">
                 <span className="bg-black text-white p-2 border-2 border-black text-sm">EM</span>
                 {RESUME_DATA.contact.email}
               </a>
-              <div className="flex items-center gap-3">
+              <a href="https://www.linkedin.com/in/coding-frog-frg780/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:underline">
                 <span className="bg-black text-white p-2 border-2 border-black text-sm">LI</span>
-                {RESUME_DATA.contact.linkedin}
-              </div>
+                LinkedIn Profile
+              </a>
+              <a href="https://github.com/codingFrog7/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:underline">
+                <span className="bg-black text-white p-2 border-2 border-black text-sm">GH</span>
+                GitHub Profile
+              </a>
             </div>
           </div>
 

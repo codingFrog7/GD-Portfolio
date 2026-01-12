@@ -72,11 +72,12 @@ const App: React.FC = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-10 mb-20">
-            {['LinkedIn', 'Twitter', 'GitHub'].map(link => (
-              <a key={link} href="#" className="text-lg hover:text-pink-500 transition-smooth uppercase font-black tracking-widest border-b-4 border-transparent hover:border-pink-500 py-1">
-                {link}
-              </a>
-            ))}
+            <a href="https://www.linkedin.com/in/coding-frog-frg780/" target="_blank" rel="noopener noreferrer" className="text-lg hover:text-pink-500 transition-smooth uppercase font-black tracking-widest border-b-4 border-transparent hover:border-pink-500 py-1">
+              LinkedIn
+            </a>
+            <a href="https://github.com/codingFrog7/" target="_blank" rel="noopener noreferrer" className="text-lg hover:text-pink-500 transition-smooth uppercase font-black tracking-widest border-b-4 border-transparent hover:border-pink-500 py-1">
+              GitHub
+            </a>
           </div>
           
           <div className="border-t-2 border-white/10 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">

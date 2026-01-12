@@ -127,10 +127,10 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Profile Sticker Image */}
-        <div className="relative mt-16 md:mt-0 animate-float" style={{ animationDuration: '7s' }}>
+        <div className="relative mt-16 md:mt-0 animate-float md:ml-8" style={{ animationDuration: '7s' }}>
           <div className="sticker-frame bg-gray-300 w-48 h-60 md:w-64 md:h-80 rotate-[3deg]">
             <img 
-              src="https://images.unsplash.com/photo-1519085115850-3af7309aef21?q=80&w=800&auto=format&fit=crop" 
+              src="/profile.png" 
               alt="Deepu Kashyap" 
               className="w-full h-full object-cover grayscale"
             />
