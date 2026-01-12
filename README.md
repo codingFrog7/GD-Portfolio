@@ -18,3 +18,17 @@ View your app in AI Studio: https://ai.studio/apps/drive/16zxZfbUpT8fo1pTEZIcCj1
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Deploy to GitHub Pages
+
+1. Build and deploy:
+   ```bash
+   npm run deploy
+   ```
+
+2. Enable GitHub Pages in your repository settings:
+   - Go to Settings → Pages
+   - Select `gh-pages` branch as source
+   - Your site will be live at: `https://codingFrog7.github.io/GD-Portfolio/`
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
