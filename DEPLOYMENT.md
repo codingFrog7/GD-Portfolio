@@ -13,7 +13,7 @@ This project is configured to deploy to GitHub Pages at: `https://codingFrog7.gi
 
 2. **Build and deploy to GitHub Pages:**
    ```bash
-   npm run deploy
+      
    ```
 
 This command will:
